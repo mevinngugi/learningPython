@@ -60,3 +60,28 @@
 # Enter 'h' to indicate the guess is too high.
 # Enter 'l' to indicate the guess is too low.
 # Enter 'c' to indicate I guessed correctly. c
+
+
+def guess_my_number():
+    print("Please think of a number between 0 and 100!")
+    high = 100
+    low = 0
+
+    while True:
+        guess = (high + low) // 2
+        print("Is your secret number ", str(guess) + "?")
+        user_feedback = str(
+            input(
+                "Enter 'h' to indicate the guess is too high."
+                "Enter 'l' to indicate the guess is too low."
+                "Enter 'c' to indicate I guessed correctly."
+            )
+        )
+        if user_feedback.lower() == "c":
+            return "Game over. Your secret number was: ", guess
+        elif user_feedback.lower() == "h":
+            high = guess
+        elif user_feedback.lower() == "l":
+            low = guess
+        else:
+            print("Sorry, I did not understand your input.")
