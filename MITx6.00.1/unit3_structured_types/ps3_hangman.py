@@ -8,6 +8,7 @@
 # (so be sure to read the docstrings!)
 
 import random
+from typing import Counter
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -54,14 +55,9 @@ def isWordGuessed(secretWord, lettersGuessed):
     returns: boolean, True if all the letters of secretWord are in lettersGuessed;
       False otherwise
     """
-    # Checks if a character in secretWord are in lettersGuessed.
-    # if True Increments the counter by 1
-
-    counter = 0
-    for x in secretWord:
-        if x in lettersGuessed:
-            counter += 1
-    return counter == len(secretWord)
+    # Updated the fuction with list comprehension.
+    newlist = [x for x in secretWord if x in lettersGuessed]
+    return "".join(newlist) == secretWord
 
 
 def getGuessedWord(secretWord, lettersGuessed):
@@ -72,6 +68,14 @@ def getGuessedWord(secretWord, lettersGuessed):
       what letters in secretWord have been guessed so far.
     """
     # FILL IN YOUR CODE HERE...
+    # Used list comprehension to chech is each letter of secretWord is in
+    # lettersGuessed if not put an underscore.
+    if lettersGuessed == []:
+        newlist = ["_ " for x in range(len(secretWord))]
+        return "".join(newlist)
+    else:
+        newlist = [x if x in lettersGuessed else "_" for x in secretWord]
+        return newlist
 
 
 def getAvailableLetters(lettersGuessed):
